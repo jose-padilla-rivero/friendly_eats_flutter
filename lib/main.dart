@@ -9,7 +9,7 @@ class FriendlyEatsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Unit Converter',
+      title: 'Friendly Eats',
       home: RestaurantRouter(),
     );
   }

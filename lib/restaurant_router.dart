@@ -24,6 +24,12 @@ class RestaurantRouter extends StatelessWidget{
               children: snapshot.data.documents.map((DocumentSnapshot document) {
                 return new Restaurant(
                   title: document['name'].toString(),
+                  city: document['city'].toString(),
+                  category: document['category'].toString(),
+                  avgRating: document['avgRating'],
+                  numRatings: document['numRating'],
+                  photo: document['photo'].toString(),
+                  price: document['price'],
                 );
               }).toList(),
             );
@@ -33,17 +39,26 @@ class RestaurantRouter extends StatelessWidget{
 
     final listView = Container(
       child: query,
-      padding: EdgeInsets.symmetric(horizontal: 8.0),
+      padding: EdgeInsets.symmetric(horizontal: 5.0),
     );
 
     final appBar = AppBar(
-      elevation: 0.0,
-      title: Text(
-        'FriendlyEats',
-        style: TextStyle(color: Colors.black, fontSize: 30.0),
+
+      leading: Builder(
+        builder: (BuildContext context){
+          return IconButton(
+            icon: const Icon(Icons.fastfood),
+          );
+        },
       ),
-      centerTitle: true,
+
+      elevation: 0.0,
+      centerTitle: false,
       backgroundColor: _backgroundColor,
+      title: Text(
+        'Friendly Eats',
+        style: TextStyle(color: Colors.black, fontSize: 20.0),
+      ),
     );
 
     return Scaffold(
