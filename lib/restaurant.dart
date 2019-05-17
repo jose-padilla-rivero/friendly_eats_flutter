@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:friendly_eats_flutter/rating_bar.dart';
 import 'package:friendly_eats_flutter/restaurant_router.dart';
 
 class Restaurant extends StatelessWidget {
@@ -38,15 +39,29 @@ class Restaurant extends StatelessWidget {
             child: ListTile(
               leading: FlutterLogo(size: 72.0),
               title: Text(title),
-              subtitle:
-                  ListView(
-                    children: <Widget>[
-                      Text(city),
-                      Text(category)
-                    ],
-                  ),
-              //Text('city'),
-              trailing: Icon(Icons.attach_money),
+              subtitle: new Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        new StarRating(rating: avgRating),
+                        Text("(" + numRatings.toString() + ")"),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          category,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(" - "),
+                        Text(city)
+                      ],
+                    ),
+                  ]
+              ),
+
+              trailing: (price == 1) ? Text('\$'): (price == 2) ? Text('\$\$'): Text('\$\$\$'),
+
               isThreeLine: true,
             ),
           ),
